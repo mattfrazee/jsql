@@ -36,7 +36,7 @@
             </section>
 
             <section class="my-12">
-                <h3 class="text-4xl font-gray-700 mb-3">Installation</h3>
+                <h3>Installation</h3>
                 <p class="mb-6">Setting up the library is super easy. Just include the script on your page and start using it!</p>
                 <pre class="rounded-lg shadow-xl language-html"><code><!--<script type="text/javascript" src="./path/to/jsql.min.js"></script>--></code></pre>
             </section>

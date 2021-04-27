@@ -17,6 +17,10 @@ body {
     @apply antialiased;
 }
 
+section h1 {
+    @apply text-4xl text-gray-700 mb-3;
+}
+
 code[class*="language-"], pre[class*="language-"] {
     word-wrap: normal !important;
     white-space: pre-wrap !important;
