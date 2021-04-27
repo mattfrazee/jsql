@@ -1,34 +1,14 @@
 // require('./bootstrap');
 
-import { jSQL } from "./jsql";
+import { jSQL } from "./util/jsql";
 window.jSQL = jSQL;
 
-const jsonArray = [
-    {
-        name: 'John',
-        gender: 'male',
-        age: 45
-    },
-    {
-        name: 'Karen',
-        gender: 'female',
-        age: 32
-    },
-    {
-        name: 'Chad',
-        gender: 'male',
-        age: 16
-    },
-    {
-        name: 'Jane',
-        gender: 'female',
-        age: 24
-    }
-];
+import { people } from "./sample-data";
 
-document.getElementById('resultVar').innerHTML = 'const jsonArray = ' + JSON.stringify(jsonArray, null, 4) + ';';
+
+document.getElementById('resultVar').innerHTML = 'const people = ' + JSON.stringify(people, null, 4) + ';';
 document.getElementById('resultDemo').innerHTML = '// result:\n' + JSON.stringify(
-    jsonArray.SELECT(['name', 'gender', 'age']).WHERE(person => (person.gender === 'male')).ORDER_BY('name', 'ASC')
+    people.SELECT(['name', 'gender', 'age']).WHERE(person => (person.gender === 'male')).ORDER_BY('name', 'ASC')
 , null, 4);
 
 window.addEventListener('scroll',function (e) {

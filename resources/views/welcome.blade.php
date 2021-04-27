@@ -18,7 +18,7 @@
                     <div class="md:col-span-2">
                         <div class="mb-6">
                             <pre class="rounded-lg shadow-xl language-js"><code><!--console.log(
-    jsonArray
+    people
         .SELECT( ['name', 'gender', 'age'] )
         .WHERE(
             person => (person.gender === 'male')
