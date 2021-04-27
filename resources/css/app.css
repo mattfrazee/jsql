@@ -22,12 +22,12 @@ header {
 }
 
 header .logo {
-    @apply text-3xl font-bold font-mono mr-6;
-    font-family: "Ubuntu Mono";
+    font-family: "Tahoma", "Trebuchet MS", "Ubuntu Mono";
+    @apply text-3xl mr-6;
 }
 
 header a {
-    @apply uppercase text-sm font-bold py-1 px-3 rounded-full bg-blue-700;
+    @apply text-sm font-bold py-1 px-3 text-white hover:text-blue-400 transition duration-200 ease-in;
 }
 
 section h3 {

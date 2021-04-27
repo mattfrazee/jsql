@@ -12,7 +12,7 @@
         <div id="app">
             <header>
                 <div class="logo">
-                    jSQL
+                    {;} jSQL
                 </div>
                 <a href="#installation">Installation</a>
                 <a href="#methods">Methods</a>
