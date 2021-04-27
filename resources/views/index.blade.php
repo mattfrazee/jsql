@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>jSQL</title>
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-{{--        @section('css')--}}
     </head>
 
     <body class="antialiased">
@@ -15,7 +14,6 @@
         </div>
 
 @section('footer_scripts')
-    @routes
     <script src="{{ mix('js/app.js') }}"></script>
 @show
     </body>
