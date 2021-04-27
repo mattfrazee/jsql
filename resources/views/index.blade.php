@@ -12,7 +12,7 @@
         <div id="app">
             @yield('content')
 
-            <footer class="text-center p-6 my-6 text-gray-300 container mx-auto">
+            <footer>
                 <p>Matt Frazee 2021</p>
             </footer>
         </div>

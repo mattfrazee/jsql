@@ -26,3 +26,7 @@ code[class*="language-"], pre[class*="language-"] {
     white-space: pre-wrap !important;
     @apply m-0;
 }
+
+footer {
+    @apply text-center p-6 my-6 text-gray-500 container mx-auto border-t;
+}
