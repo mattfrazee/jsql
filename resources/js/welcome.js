@@ -1,11 +1,7 @@
 new Vue({
+    comments: true,
     mounted(){
         console.log(Array.prototype);
-        // console.log(jSQL);
-    },
-    computed: {
-        helloWorld() {
-            return 'Success';
-        },
+        console.log(jSQL);
     },
 }).$mount('#app');

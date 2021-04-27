@@ -1,7 +1,19 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/unescaped-markup/prism-unescaped-markup.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 [v-cloak] {
     @apply hidden;
+}
+
+html, body {
+    @apply relative h-full
+}
+code[class*="language-"], pre[class*="language-"] {
+    word-wrap: normal !important;
+    white-space: pre-wrap !important;
+    @apply m-0;
 }
