@@ -17,7 +17,7 @@ body {
     @apply antialiased;
 }
 
-section h1 {
+section h3 {
     @apply text-4xl text-gray-700 mb-3;
 }
 
