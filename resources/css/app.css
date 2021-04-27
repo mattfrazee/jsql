@@ -18,7 +18,11 @@ body {
 }
 
 header {
-    @apply text-left text-xl font-bold px-6 py-3 m-0 bg-gray-800 text-white flex;
+    @apply text-left px-6 py-3 m-0 bg-gray-800 text-white flex;
+}
+
+header .logo {
+    @apply text-xl font-bold;
 }
 
 section h3 {

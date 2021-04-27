@@ -11,7 +11,7 @@
 
         <div id="app">
             <header>
-                <div>
+                <div class="logo">
                     jSQL
                 </div>
             </header>
