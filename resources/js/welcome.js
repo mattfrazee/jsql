@@ -1,6 +1,7 @@
 new Vue({
     mounted(){
-        console.log('test')
+        console.log(Array.prototype);
+        // console.log(jSQL);
     },
     computed: {
         helloWorld() {
