@@ -14,6 +14,9 @@
                 <div class="logo">
                     jSQL
                 </div>
+                <a href="#installation">Installation</a>
+                <a href="#methods">Methods</a>
+                <a href="#examples">Examples</a>
             </header>
             @yield('content')
             <footer>
