@@ -7,7 +7,7 @@
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     </head>
 
-    <body class="antialiased">
+    <body>
 
         <div id="app">
             @yield('content')

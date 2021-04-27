@@ -12,6 +12,11 @@
 html, body {
     @apply relative h-full;
 }
+
+body {
+    @apply antialiased;
+}
+
 code[class*="language-"], pre[class*="language-"] {
     word-wrap: normal !important;
     white-space: pre-wrap !important;
