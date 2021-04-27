@@ -22,7 +22,8 @@ header {
 }
 
 header .logo {
-    @apply text-xl font-bold;
+    @apply text-2xl font-bold font-mono;
+    font-family: "Ubuntu Mono";
 }
 
 section h3 {
