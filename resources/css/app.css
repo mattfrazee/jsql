@@ -17,6 +17,10 @@ body {
     @apply antialiased;
 }
 
+header {
+    @apply text-left text-xl font-bold px-6 py-3 m-0 bg-gray-800 text-white flex;
+}
+
 section h3 {
     @apply text-4xl text-gray-700 mb-3;
 }

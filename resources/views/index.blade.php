@@ -10,6 +10,11 @@
     <body>
 
         <div id="app">
+            <header>
+                <div>
+                    jSQL
+                </div>
+            </header>
             @yield('content')
             <footer>
                 <p>© {{ date('Y') }} Matt Frazee</p>

@@ -1,7 +1,6 @@
-require('./bootstrap');
+// require('./bootstrap');
 
-import {jSQL} from "./jsql";
-
+import { jSQL } from "./jsql";
 window.jSQL = jSQL;
 
 const jsonArray = [
