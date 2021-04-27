@@ -18,7 +18,7 @@ body {
 }
 
 header {
-    @apply text-left px-6 py-3 m-0 bg-gray-800 text-white flex;
+    @apply px-6 py-3 m-0 bg-gray-800 text-white flex;
 }
 
 header .logo {
