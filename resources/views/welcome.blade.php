@@ -1,9 +1,9 @@
 @extends('index')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class="px-6 lg:container mx-auto">
         <div class="grid grid-cols-1 gap-6 min-h-screen items-center">
-            <section class="text-center">
+            <section class="text-center xl:w-5/6 mx-auto">
 
                 <h1 class="text-9xl mb-6 mt-20 tracking-tight font-bold">jSQL</h1>
                 <h2 class="text-3xl mb-6">A SQL inspired javascript library for JSON arrays</h2>
