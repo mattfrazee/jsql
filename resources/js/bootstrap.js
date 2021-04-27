@@ -27,5 +27,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-import Vue from 'vue';
-window.Vue = Vue;
+// import Vue from 'vue';
+// window.Vue = Vue;

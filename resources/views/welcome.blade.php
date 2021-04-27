@@ -49,5 +49,5 @@
     @parent
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/unescaped-markup/prism-unescaped-markup.min.js"></script>
-    <script src="{{ mix('js/welcome.js') }}"></script>
+{{--    <script src="{{ mix('js/welcome.js') }}"></script>--}}
 @endsection
