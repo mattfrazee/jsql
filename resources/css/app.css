@@ -28,5 +28,5 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 footer {
-    @apply text-center px-6 my-6 text-gray-500 container mx-auto border-t;
+    @apply text-left font-bold text-sm p-6 mt-6 bg-gray-800 text-white;
 }
