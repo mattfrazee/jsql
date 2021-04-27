@@ -11,7 +11,6 @@
 
         <div id="app">
             @yield('content')
-
             <footer>
                 <p>Matt Frazee 2021</p>
             </footer>
