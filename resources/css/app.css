@@ -10,7 +10,7 @@
 }
 
 html, body {
-    @apply relative h-full
+    @apply relative h-full;
 }
 code[class*="language-"], pre[class*="language-"] {
     word-wrap: normal !important;
