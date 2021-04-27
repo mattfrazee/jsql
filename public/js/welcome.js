@@ -4,13 +4,10 @@ var __webpack_exports__ = {};
   !*** ./resources/js/welcome.js ***!
   \*********************************/
 new Vue({
+  comments: true,
   mounted: function mounted() {
-    console.log(Array.prototype); // console.log(jSQL);
-  },
-  computed: {
-    helloWorld: function helloWorld() {
-      return 'Success';
-    }
+    console.log(Array.prototype);
+    console.log(jSQL);
   }
 }).$mount('#app');
 /******/ })()
