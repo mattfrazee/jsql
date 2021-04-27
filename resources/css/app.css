@@ -28,5 +28,5 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 footer {
-    @apply text-left font-bold text-sm p-6 mt-6 bg-gray-800 text-white;
+    @apply text-left font-bold text-sm p-6 mb-0 mt-6 bg-gray-800 text-white;
 }
