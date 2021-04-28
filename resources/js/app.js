@@ -25,7 +25,9 @@ document.querySelector('.hero-result').innerHTML = '// result:\n' + JSON.stringi
 function checkNavScroll(){
     let el = document.querySelector('header');
     if(window.pageYOffset >= 200 && el.style.top != '0px')
-        el.style.top = window.pageYOffset >= 200 ? '0px' : '-'+(el.scrollHeight + 10)+'px'
+        el.style.top = '0px';
+    else if(window.pageYOffset <= 200 && el.style.top != '-'+(el.scrollHeight + 10)+'px')
+        el.style.top = '-'+(el.scrollHeight + 10)+'px';
 }
 window.addEventListener('scroll', checkNavScroll);
 checkNavScroll();
