@@ -1,22 +1,31 @@
 // require('./bootstrap');
 
+
+// import jSQL
 import { jSQL } from "./util/jsql";
 window.jSQL = jSQL;
 
+
+// import sample data
 import { people } from "./sample-data";
+import { heroSample } from "./sample-data";
+document.querySelectorAll('.sample-data').forEach(function (el) {
+    el.innerHTML = 'const people = ' + JSON.stringify(people, null, 4) + ';';
+})
 
 
-document.getElementById('resultVar').innerHTML = 'const people = ' + JSON.stringify(people, null, 4) + ';';
-document.getElementById('resultDemo').innerHTML = '// result:\n' + JSON.stringify(
-    people.SELECT(['name', 'gender', 'age']).WHERE(person => (person.gender === 'male')).ORDER_BY('name', 'ASC')
+// hero
+document.querySelector('.hero-data').innerHTML = 'const people = ' + JSON.stringify(heroSample, null, 4) + ';';
+document.querySelector('.hero-result').innerHTML = '// result:\n' + JSON.stringify(
+    heroSample.SELECT(['name', 'gender', 'age']).WHERE(person => (person.gender === 'male')).ORDER_BY('name', 'DESC')
 , null, 4);
 
+
+// sticky navigation
 function checkNavScroll(){
-    if(window.pageYOffset >= 200){
-        document.querySelector('header').style.top = '0px';
-    } else {
-        document.querySelector('header').style.top = '-'+document.querySelector('header').scrollHeight+'px';
-    }
+    let el = document.querySelector('header');
+    if(window.pageYOffset >= 200 && el.style.top != '0px')
+        el.style.top = window.pageYOffset >= 200 ? '0px' : '-'+(el.scrollHeight + 10)+'px'
 }
 window.addEventListener('scroll', checkNavScroll);
 checkNavScroll();
