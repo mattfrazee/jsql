@@ -1,24 +1,21 @@
 export const jSQL = {
-    VERSION: '1.0.0',
+    version: '1.0.0',
     DESC: 'DESC',
     ASC: 'ASC',
-    USE: function (jsonArray) {
-        return jsonArray;
-    },
-    LPAD: function (inputString = '', padLength = 0, padString = '') {
+    lpad: function (inputString = '', padLength = 0, padString = '') {
         return inputString.padStart(padLength, padString);
     },
-    RPAD: function (inputString = '', padLength = 0, padString = '') {
+    rpad: function (inputString = '', padLength = 0, padString = '') {
         return inputString.padEnd(padLength, padString);
     },
-    NOW: function () {
+    now: function () {
         var date = new Date()
-        date = this.LPAD(date.getUTCHours(), 2, '0') + ':' + this.LPAD(date.getUTCMinutes(), 2, '0') + ':' + this.LPAD(date.getUTCSeconds(), 2, '0');
-        return this.CURDATE() + ' ' + date;
+        date = this.lpad(date.getUTCHours(), 2, '0') + ':' + this.lpad(date.getUTCMinutes(), 2, '0') + ':' + this.lpad(date.getUTCSeconds(), 2, '0');
+        return this.curdate() + ' ' + date;
     },
-    CURDATE: function () {
+    curdate: function () {
         var date = new Date()
-        date = date.getUTCFullYear() + '-' + this.LPAD(date.getUTCMonth() + 1, 2, '0') + '-' + this.LPAD(date.getUTCDate(), 2, '0');
+        date = date.getUTCFullYear() + '-' + this.lpad(date.getUTCMonth() + 1, 2, '0') + '-' + this.lpad(date.getUTCDate(), 2, '0');
         return date;
     },
     COMPARE_BY_STR: (a = '', b = '', sortDirection = 'ASC') => {
@@ -29,25 +26,30 @@ export const jSQL = {
     },
 }
 
-Array.prototype.SELECT = function (key) {
+Array.prototype.select = function (key) {
     return !key || key === '*' ? this : this.map(function (item) {
         if (Array.isArray(key)) {
             var obj = {};
             key.forEach(val => {
-                obj[val] = item[val];
+                if(item[val] != undefined) {
+                    obj[val] = item[val];
+                }
             });
             return obj;
-        } else return {
+        }
+        else return {
             [key]: item[key]
         };
     });
 }
 
-Array.prototype.WHERE = function (query) {
-    return this.filter(item => query(item));
+Array.prototype.where = function (comparison) {
+    return comparison === undefined
+        ? this
+        : this.filter(item => comparison(item));
 }
 
-Array.prototype.LIKE = function (searchTerm = '', keys = []) {
+Array.prototype.like = function (searchTerm = '', keys = []) {
     let result = [];
 
     function searchObject(obj, str) {
@@ -73,15 +75,11 @@ Array.prototype.LIKE = function (searchTerm = '', keys = []) {
     return result;
 }
 
-Array.prototype.LIMIT = function (offset = 0, rowCount) {
-    if (rowCount === undefined) {
-        rowCount = offset;
-        offset = 0;
-    }
-    return this.slice(offset, rowCount);
+Array.prototype.limit = function (recordCount = 1000, recordOffset = 0) {
+    return this.slice(recordOffset, recordCount + recordOffset);
 }
 
-Array.prototype.ORDER_BY = function (key, sortDirection = 'ASC') {
+Array.prototype.orderBy = function (key, sortDirection = 'ASC') {
     var descending = sortDirection.toUpperCase() === jSQL.DESC;
     return typeof (key) === 'function' ? this.sort(key) : this.sort(function (a, b) {
         var x = a[key], y = b[key];
@@ -89,18 +87,30 @@ Array.prototype.ORDER_BY = function (key, sortDirection = 'ASC') {
     });
 }
 
-Array.prototype.PAGINATE = function (resultsPerPage = 1000, page = 1) {
-    return this.slice((page - 1) * resultsPerPage, page * resultsPerPage);
+Array.prototype.paginate = function (recordsPerPage = 1000, page = 1) {
+    return this.slice((page - 1) * recordsPerPage, page * recordsPerPage);
 }
 
-Array.prototype.FIRST = function () {
+Array.prototype.numberOfPaginatedRecords = function (recordsPerPage = 1000) {
+    return Math.ceil(this.length / recordsPerPage);
+}
+
+Array.prototype.first = function () {
     return this[0];
 }
 
-Array.prototype.LAST = function () {
+Array.prototype.last = function () {
     return this[this.length - 1];
 }
 
-Array.prototype.GET = function (id = 0) {
+Array.prototype.get = function (id = 0) {
     return this[id];
+}
+
+Array.prototype.min = function (key) {
+    return this.orderBy(key, jSQL.ASC).FIRST();
+}
+
+Array.prototype.max = function (key) {
+    return this.orderBy(key, jSQL.DESC).FIRST();
 }

@@ -18,6 +18,14 @@ export const people = [
         "gender": "male",
         "age": "18"
     }, {
+        "name": "Jamie",
+        "age": "25",
+        "address": {
+            "country": {
+                "name": "US"
+            }
+        }
+    }, {
         "name": "Heather",
         "gender": "female",
         "age": "38",
@@ -48,8 +56,8 @@ export const people = [
 
 export const heroSample = [
     people[1],
-    people[3],
     people[4],
+    people[5],
     {
         "name": "Jessica",
         "gender": "female",

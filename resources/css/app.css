@@ -33,16 +33,21 @@ header a {
     @apply text-sm font-bold py-1 px-3 text-white hover:text-blue-400 transition duration-200 ease-in text-center;
 }
 
+.section-container > section {
+    @apply lg:w-5/6 mx-auto;
+}
+
 section h1, section h2, section h3, section h4 {
     font-family: "JetBrains Mono", monospace;
+    @apply tracking-tight;
 }
 
 section h1 {
-    @apply text-9xl tracking-tight font-bold;
+    @apply text-9xl font-bold;
 }
 
 section h2 {
-    @apply text-5xl tracking-tight;
+    @apply text-5xl;
 }
 
 section h3 {
@@ -51,7 +56,19 @@ section h3 {
 
 section h4 {
     font-family: "JetBrains Mono", monospace;
-    @apply mb-4 text-2xl;
+    @apply text-2xl;
+}
+
+.params {
+    @apply mt-4;
+}
+
+.params code {
+    @apply rounded-lg py-2 px-4 bg-green-500 text-green-100 mr-4;
+}
+
+.params code em {
+    @apply text-green-800;
 }
 
 code[class*="language-"], pre[class*="language-"] {

@@ -1,4 +1,4 @@
-// require('./bootstrap');
+require('./bootstrap');
 
 
 // import jSQL
@@ -8,17 +8,7 @@ window.jSQL = jSQL;
 
 // import sample data
 import { people } from "./sample-data";
-import { heroSample } from "./sample-data";
-document.querySelectorAll('.sample-data').forEach(function (el) {
-    el.innerHTML = 'const people = ' + JSON.stringify(people, null, 4) + ';';
-})
-
-
-// hero
-document.querySelector('.hero-data').innerHTML = 'const people = ' + JSON.stringify(heroSample, null, 4) + ';';
-document.querySelector('.hero-result').innerHTML = '// result:\n' + JSON.stringify(
-    heroSample.SELECT(['name', 'gender', 'age']).WHERE(person => (person.gender === 'male')).ORDER_BY('name', 'DESC')
-, null, 4);
+window.people = people;
 
 
 // sticky navigation
