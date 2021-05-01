@@ -105,7 +105,6 @@
                         <code>Array</code>
                     </p>
                 </div>
-{{--                <pre class="rounded-lg shadow-xl language-js"><code><!----></code></pre>--}}
                 <pre id="limitExample1" class="rounded-lg shadow-xl language-js"><code><!----></code></pre>
                 <p class="my-5"></p>
 
