@@ -21,16 +21,28 @@ body {
 header {
     transition-property: top;
     top:-100px;
-    @apply px-3 py-3 lg:px-6 bg-gray-800 text-white flex w-full fixed duration-500 ease-in items-center space-x-4 lg:space-x-6;
+    @apply px-3 py-3 lg:px-6 bg-gray-800 text-white flex w-full fixed duration-500 ease-in items-center space-x-4 lg:space-x-6 z-10 sm:justify-start justify-between;
 }
 
 header .logo {
     font-family: "JetBrains Mono", monospace;
-    @apply text-3xl mr-6;
+    @apply text-3xl m-0 whitespace-nowrap;
 }
 
 header a {
     @apply text-sm font-bold py-1 px-3 text-white hover:text-blue-400 transition duration-200 ease-in text-center;
+}
+
+#showMenu + header a{
+    @apply sm:block hidden;
+}
+
+#showMenu:checked + header a{
+    @apply block;
+}
+
+header label[for="showMenu"] {
+    @apply focus:outline-none px-4 sm:hidden;
 }
 
 .section-container > section {
@@ -59,12 +71,16 @@ section h4 {
     @apply text-2xl;
 }
 
+section h5 {
+    @apply text-lg font-bold my-2;
+}
+
 .params {
     @apply mt-4;
 }
 
 .params code {
-    @apply rounded-lg py-2 px-4 bg-green-500 text-green-100 mr-4;
+    @apply rounded py-1 px-2 bg-green-500 text-green-100 mr-2 whitespace-nowrap inline-block text-sm leading-4;
 }
 
 .params code em {

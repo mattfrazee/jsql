@@ -20,6 +20,7 @@ export const people = [
     }, {
         "name": "Jamie",
         "age": "25",
+        "birthday": "9/8/1992",
         "address": {
             "country": {
                 "name": "US"
@@ -29,9 +30,10 @@ export const people = [
         "name": "Heather",
         "gender": "female",
         "age": "38",
+        "birthday": "6/15/2001",
         "address": {
             "line1": "123 Washington Ave",
-            "line2": "",
+            "line2": "Suite 300",
             "city": "Somewhere",
             "state": "TX",
             "zipcode": "23345",
@@ -46,11 +48,19 @@ export const people = [
     }, {
         "name": "Joe",
         "gender": "male",
-        "age": "64"
+        "age": "64",
+        "birthday": "12/25/1984"
     }, {
         "name": "Danny",
         "age": "20",
-        "address": {}
+        "birthday": "12/17/1983",
+        "address": {},
+        "interests": ["football", "hockey", "rugby", "soccer"]
+    }, {
+        "name": "Matthew",
+        "age": 37,
+        "birthday": "05/25/1984",
+        "gender": "male"
     }
 ];
 

@@ -10,6 +10,7 @@
     <body>
 
         <div id="app">
+            <input type="checkbox" id="showMenu" class="hidden">
             <header>
                 <div class="logo">
                     {;} jSQL
@@ -18,6 +19,7 @@
                 <a href="#installation">Installation</a>
                 <a href="#prototypes">Array Prototypes</a>
                 <a href="#methods">jSQL Methods</a>
+                <label class="text-3xl" for="showMenu">≡</label>
             </header>
             @yield('content')
             <footer>
