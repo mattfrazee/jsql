@@ -1,62 +1,302 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# jSQL
+A SQL inspired javascript library for JSON arrays.
+This library lets you use familiar functions to preform simple tasks that
+extract, sort, filter, or view data from JSON objects.
 
-## About Laravel
+## Overview
+JSON data formats drive most websites content these days. More than often, that content is
+saved in a SQL database where the data can be queried and sent directly to the DOM, or sent in
+an API request. Building a solid website can take time, so the ability to display and manipulate
+that JSON data is crucial.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+jSQL is more than just an array library, it's a solid framework to utilize similar
+database commands, like MySQL, to manipulate it's data. Single page applications really benefit
+from jSQL's functionality to display that data, easily. I've taken the guess work out of array
+manipulations, making this framework a straight-forward and simple solution to learn, in an hour
+or less.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Note on Performance
+These methods are best when they are chained. However, sometimes the order in which you chain them will help with speed.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+For example, if you have 1000 records of data, but you 
+only need 10 at a time, use `limit(10)` or
+`paginate(100)` first, then the proceeding functions will only use 10 records. Otherwise, jSQL would be iterating
+through 1000 records before any limiting or filtering happens.
 
-## Learning Laravel
+## Installation
+Can you spare < 3kb to import this into your project? Setting up the library is super
+easy, just include the script on your page or import script and start using it!
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```html
+<script type="text/javascript" src="./path/to/jsql.min.js"></script>
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Sample Data
+For the examples to work, we need some data to work with. This data is only used for the examples in this documentation. This contains various types of dummy data that is used to show typical JSON datasets.
 
-## Laravel Sponsors
+```json
+const people = [
+    {
+        "name": "John",
+        "gender": "male",
+        "age": "21",
+        "address": {
+            "line1": "123 Main St",
+            "line2": "",
+            "city": "Sunnyville",
+            "state": "NY",
+            "zipcode": "12345",
+            "country": {
+                "name": "US"
+            }
+        }
+    },
+    {
+        "name": "Chad",
+        "gender": "male",
+        "age": "18"
+    },
+    {
+        "name": "Jamie",
+        "age": "25",
+        "birthday": "9/8/1992",
+        "address": {
+            "country": {
+                "name": "US"
+            }
+        }
+    },
+    {
+        "name": "Heather",
+        "gender": "female",
+        "age": "38",
+        "birthday": "6/15/2001",
+        "address": {
+            "line1": "123 Washington Ave",
+            "line2": "Suite 300",
+            "city": "Somewhere",
+            "state": "TX",
+            "zipcode": "23345",
+            "country": {
+                "name": "US"
+            }
+        }
+    },
+    {
+        "name": "Sally",
+        "gender": "female",
+        "age": "15"
+    },
+    {
+        "name": "Joe",
+        "gender": "male",
+        "age": "64",
+        "birthday": "12/25/1984"
+    },
+    {
+        "name": "Danny",
+        "age": "20",
+        "birthday": "12/17/1983",
+        "address": {},
+        "interests": [
+            "football",
+            "hockey",
+            "rugby",
+            "soccer"
+        ]
+    },
+    {
+        "name": "Matthew",
+        "age": 37,
+        "birthday": "05/25/1984",
+        "gender": "male"
+    }
+];
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+##Array Prototypes
 
-### Premium Partners
+Since most of these array prototypes reflect similar SQL functions, you may already know what those functions do. One thing to remember is that jSQL really shines when you chain your methods.
+<br><br>
+### append(json) `Returns: Array`
+#### Parameters: `json (Object)`
+Temporarily appends an item at the end of the JSON array.
+```
+people.append({'name': 'Matthew'})
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+<br><br>
+### appendAt(index, json) `Returns: Array`
+#### Parameters: `index (Number)`, `json (Object)`
+Temporarily appends an item at the end of the JSON array.
+```
+people.appendAt(3, {'name': 'Matthew'})
+```
 
-## Contributing
+<br><br>
+### prepend(json) `Returns: Array`
+#### Parameters: `json (Object)`
+Temporarily appends an item at the beginning of the JSON array.
+```
+people.prepend({'name': 'Matthew'})
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<br><br>
+### insertBefore(json) `Returns: Array`
+#### Parameters: `json (Object)`
+Permanently appends an item at the end of the JSON array.
+```
+people.insertBefore({'name': 'Matthew'})
+```
 
-## Code of Conduct
+<br><br>
+### insertAt(index, json) `Returns: Array`
+#### Parameters: `index (Number)`, `json (Object)`
+Permanently appends an item to the JSON array by a given index.
+```
+people.insertAt(3, {'name': 'Matthew'})
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<br><br>
+### insertAfter(json) `Returns: Array`
+#### Parameters: `json (Object)`
+Permanently adds an item at the beginning of the JSON array.
+```
+people.insertAfter({'name': 'Matthew'})
+```
 
-## Security Vulnerabilities
+<br><br>
+### avg(key) `Returns: Number`
+_An alias of `average`._
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<br><br>
+### average(key) `Returns: Number`
+#### Parameters: `key (String)`
+This calculates the average number from a given key.
+```
+people.average('age')
+```
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<br><br>
+### sum(key) `Returns: Number`
+#### Parameters: `key (String)`
+This calculates the sum from a given key.
+```
+people.sum('age')
+```
+
+<br><br>
+### max(key) `Returns: Number`
+#### Parameters: `key (String)`
+
+```
+people.max('age')
+```
+
+<br><br>
+### min(key) `Returns: Number`
+#### Parameters: `key (String)`
+
+```
+people.min('age')
+```
+
+<br><br>
+### first() `Returns: Object`
+This will select the first item in an array. Kinda like `people[0]`.
+```
+people.first()
+```
+
+<br><br>
+### last() `Returns: Object`
+This will select the first item in an array. Kinda like `people[people.length]`.
+```
+people.last()
+```
+
+<br><br>
+### get(index) `Returns: Object`
+#### Parameters: `index (Number)`
+This will select the a given ID in an array. Basically, `people[index]`.
+```
+people.get(3)
+```
+
+<br><br>
+### has(key) `Returns: Boolean`
+#### Parameters: `key (String)`
+This determines if the array's objects contain a given key.
+This function allows for deep object level refinements.
+```
+people.has('address.line2')
+```
+
+<br><br>
+### pluck(keys) `Returns: Array`
+#### Parameters: `key (String | Array)`
+This will select the JSON keys to extract from the array or arguments and returns all records that
+contain any of the matching keys.
+```
+people.select('name', 'address')
+```
+
+<br><br>
+### select(keys) `Returns: Array`
+_An alias of `select`._
+
+
+<br><br>
+### pages(resultsPerPage = 1000) `Returns: Number`
+#### Parameters: `resultsPerPage (Number)`
+Returns the total number of array items per page.
+```
+people.pages(7)
+```
+
+<br><br>
+### paginate(resultsPerPage = 1000, page = 1) `Returns: Number`
+#### Parameters: `resultsPerPage (Number)`, `page (Number)`
+Returns a limited number of array items per page. This is a great way to paginate any array with or without JSON data.
+```
+people.paginate(7,2)
+```
+
+<br><br>
+### limit(recordCount = 1000, recordOffset = 0) `Returns: Array`
+#### Parameters: `recordCount (Number)`, `recordOffset (Number)`
+Returns 
+```
+people.limit(2)
+```
+
+<br><br>
+### thatHave(key) `Returns: Array`
+#### Parameters: `key (String)`
+This will select all the items that have a property from the key defined. This function allows deep
+object level refinements such as "address.state", which would return all objects that contain those
+property values.
+```
+people.thatHave('gender')
+```
+
+<br><br>
+### parseJSON() `Returns: Array`
+This will parse any JSON strings in the array to an object. Should you need to use this function, chain that first.
+```
+people.insertAfter('{"name":"Kenny", "age":"56"}').parseJSON().select(['name', 'age'])
+```
+
+<br><br>
+`searchFor(searchTerm = '', caseSensitive = true)` `Returns: Array`
+#### Parameters: `searchTerm (String)`, `caseSensitive (Boolean)`
+A deep search that returns all records containing the search term.
+```
+people.searchFor('FOOTBALL', false)
+```
+
+<br><br>
+### like(searchTerm = '', caseSensitive = true) `Returns: Array`
+_An alias of `searchFor`._
