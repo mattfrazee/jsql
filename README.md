@@ -115,188 +115,279 @@ const people = [
 ];
 ```
 
-##Array Prototypes
+## Array Prototypes
 
-Since most of these array prototypes reflect similar SQL functions, you may already know what those functions do. One thing to remember is that jSQL really shines when you chain your methods.
-<br><br>
-### append(json) `Returns: Array`
-#### Parameters: `json (Object)`
+Since some of these array prototypes reflect similar SQL functions, you may already know what those functions do. One thing to remember is that jSQL really shines when you chain your methods.
+
+---
+
+### append( json )
+
+Parameters: `Object` Returns: `Array`
+
 Temporarily appends an item at the end of the JSON array.
-```
+
+**Example:**
+```javascript
 people.append({'name': 'Matthew'})
 ```
 
-<br><br>
-### appendAt(index, json) `Returns: Array`
-#### Parameters: `index (Number)`, `json (Object)`
+---
+
+### appendAt( index, json )
+Parameters: (`Number`, `Object`) Returns: `Array`
+
 Temporarily appends an item at the end of the JSON array.
-```
+
+**Example:**
+```javascript
 people.appendAt(3, {'name': 'Matthew'})
 ```
 
-<br><br>
-### prepend(json) `Returns: Array`
-#### Parameters: `json (Object)`
-Temporarily appends an item at the beginning of the JSON array.
-```
-people.prepend({'name': 'Matthew'})
-```
+---
 
-<br><br>
-### insertBefore(json) `Returns: Array`
-#### Parameters: `json (Object)`
-Permanently appends an item at the end of the JSON array.
-```
-people.insertBefore({'name': 'Matthew'})
-```
+### average( key )
+Parameters: `String` Returns: `Number`
 
-<br><br>
-### insertAt(index, json) `Returns: Array`
-#### Parameters: `index (Number)`, `json (Object)`
-Permanently appends an item to the JSON array by a given index.
-```
-people.insertAt(3, {'name': 'Matthew'})
-```
-
-<br><br>
-### insertAfter(json) `Returns: Array`
-#### Parameters: `json (Object)`
-Permanently adds an item at the beginning of the JSON array.
-```
-people.insertAfter({'name': 'Matthew'})
-```
-
-<br><br>
-### avg(key) `Returns: Number`
-_An alias of `average`._
-
-<br><br>
-### average(key) `Returns: Number`
-#### Parameters: `key (String)`
 This calculates the average number from a given key.
-```
+
+**Example:**
+```javascript
 people.average('age')
 ```
 
+---
 
-<br><br>
-### sum(key) `Returns: Number`
-#### Parameters: `key (String)`
-This calculates the sum from a given key.
+### avg( key )
+_An alias of `average`._
+
+---
+
+### prepend( json )
+
+Parameters: `Object` Returns: `Array`
+
+Temporarily appends an item at the beginning of the JSON array until the chain ends.
+
+**Example:**
+```javascript
+people.prepend({'name': 'Matthew'})
 ```
+
+
+
+### insertAfter( json )
+Parameters: `Object` Returns: `Array`
+
+Permanently adds an item at the beginning of the JSON array.
+
+**Example:**
+```javascript
+people.insertAfter({'name': 'Matthew'})
+```
+
+---
+
+### insertAt( index, json )
+Parameters: (`Number`, `Object`) Returns: `Array`
+
+Permanently appends an item to the JSON array by a given index.
+
+**Example:**
+```javascript
+people.insertAt(3, {'name': 'Matthew'})
+```
+
+
+---
+
+### insertBefore( json )
+Parameters: `Object` Returns: `Array`
+
+Permanently appends an item at the end of the JSON array.
+
+**Example:**
+```javascript
+people.insertBefore({'name': 'Matthew'})
+```
+
+---
+
+### sum( key )
+Parameters: `String` Returns: `Number`
+
+This calculates the sum from a given key.
+
+**Example:**
+```javascript
 people.sum('age')
 ```
 
-<br><br>
-### max(key) `Returns: Number`
-#### Parameters: `key (String)`
+---
 
-```
+### max( key )
+Parameters: `String` Returns: `Number`
+
+This returns the maximum value from a given key.
+
+**Example:**
+```javascript
 people.max('age')
 ```
 
-<br><br>
-### min(key) `Returns: Number`
-#### Parameters: `key (String)`
+---
 
-```
+### min( key )
+Parameters: `String` Returns: `Number`
+
+**Example:**
+```javascript
 people.min('age')
 ```
 
-<br><br>
-### first() `Returns: Object`
+---
+
+### first()
+Returns: `Object`
+
 This will select the first item in an array. Kinda like `people[0]`.
-```
+
+**Example:**
+```javascript
 people.first()
 ```
 
-<br><br>
-### last() `Returns: Object`
+---
+
+### last()
+Returns: `Object`
+
 This will select the first item in an array. Kinda like `people[people.length]`.
-```
+
+**Example:**
+```javascript
 people.last()
 ```
 
-<br><br>
-### get(index) `Returns: Object`
-#### Parameters: `index (Number)`
+---
+
+### get( index )
+Parameters: `Number` Returns: `Object`
+
 This will select the a given ID in an array. Basically, `people[index]`.
-```
+
+**Example:**
+```javascript
 people.get(3)
 ```
 
-<br><br>
-### has(key) `Returns: Boolean`
-#### Parameters: `key (String)`
-This determines if the array's objects contain a given key.
-This function allows for deep object level refinements.
-```
+---
+
+### has( key )
+Parameters: `String` Returns: `Boolean`
+
+This determines if the array's objects contain a given key. This function allows for deep object level refinements.
+
+**Example:**
+```javascript
 people.has('address.line2')
 ```
 
-<br><br>
-### pluck(keys) `Returns: Array`
-#### Parameters: `key (String | Array)`
-This will select the JSON keys to extract from the array or arguments and returns all records that
-contain any of the matching keys.
-```
+---
+
+### pluck( keys )
+Parameters: (`String` or `Array`) Returns: `Array`
+
+This will select the JSON keys to extract from the array or arguments and returns all records that contain any of the matching keys.
+
+**Example:**
+```javascript
 people.select('name', 'address')
 ```
 
-<br><br>
-### select(keys) `Returns: Array`
-_An alias of `select`._
+---
 
+### select( keys )
 
-<br><br>
-### pages(resultsPerPage = 1000) `Returns: Number`
-#### Parameters: `resultsPerPage (Number)`
+_An alias of `pluck`._
+
+---
+
+### pages( resultsPerPage = 1000 )
+Parameters: `Number` Returns: `Number`
+
 Returns the total number of array items per page.
-```
+
+**Example:**
+```javascript
 people.pages(7)
 ```
 
-<br><br>
-### paginate(resultsPerPage = 1000, page = 1) `Returns: Number`
-#### Parameters: `resultsPerPage (Number)`, `page (Number)`
+
+### paginate( resultsPerPage = 1000, page = 1 )
+Parameters: (`Number`, `Number`) Returns: `Array`
+
 Returns a limited number of array items per page. This is a great way to paginate any array with or without JSON data.
-```
-people.paginate(7,2)
+
+**Example:**
+```javascript
+people.paginate(7, 2)
 ```
 
-<br><br>
-### limit(recordCount = 1000, recordOffset = 0) `Returns: Array`
-#### Parameters: `recordCount (Number)`, `recordOffset (Number)`
-Returns 
-```
+
+### limit(recordCount = 1000, recordOffset = 0)
+Parameters: `Number`, `Number` Returns: `Array`
+
+Returns a specified amount of array items from a given index.
+
+**Example:**
+```javascript
 people.limit(2)
 ```
 
-<br><br>
-### thatHave(key) `Returns: Array`
-#### Parameters: `key (String)`
+---
+
+### thatHave(key)
+Parameters: `String` Returns: `Array`
+
 This will select all the items that have a property from the key defined. This function allows deep
 object level refinements such as "address.state", which would return all objects that contain those
 property values.
-```
+
+**Example:**
+```javascript
 people.thatHave('gender')
 ```
 
-<br><br>
-### parseJSON() `Returns: Array`
+---
+
+### parseJSON()
+Returns: `Array`
+
 This will parse any JSON strings in the array to an object. Should you need to use this function, chain that first.
-```
-people.insertAfter('{"name":"Kenny", "age":"56"}').parseJSON().select(['name', 'age'])
+
+**Example:**
+```javascript
+people
+    .insertAfter('{"name":"Kenny", "age":"56"}')
+    .parseJSON()
+    .pluck('name', 'age')
 ```
 
-<br><br>
-`searchFor(searchTerm = '', caseSensitive = true)` `Returns: Array`
-#### Parameters: `searchTerm (String)`, `caseSensitive (Boolean)`
+---
+
+### searchFor(searchTerm = '', caseSensitive = true)`
+Parameters: (`String`, `Boolean`) Returns: `Array`
+
 A deep search that returns all records containing the search term.
-```
+
+**Example:**
+```javascript
 people.searchFor('FOOTBALL', false)
 ```
 
-<br><br>
-### like(searchTerm = '', caseSensitive = true) `Returns: Array`
+---
+
+### like( searchTerm = '', caseSensitive = true )
+
 _An alias of `searchFor`._
