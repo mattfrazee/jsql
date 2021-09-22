@@ -39,7 +39,7 @@ new Vue({
         );
         this.fillCode(
             '.hero-result',
-            '// result:\n' + JSON.stringify(heroSample.select(['name', 'gender', 'age']).where(person => (person.gender === 'male')).orderBy('name', 'DESC'), null, 4)
+            '// result:\n' + JSON.stringify(heroSample.select(['name', 'gender', 'age']).where(person => (person.gender === 'male')).orderBy('name', 'sort.desc'), null, 4)
         );
 
 
@@ -77,7 +77,7 @@ new Vue({
         );
         this.fillCode(
             '#orderByExample2',
-            'people\n\t.select( ["name", "age"] )\n\t.orderBy(\n\t\t(a, b) => jSQL.sort.compare(a.age, b.age, jSQL.ASC) || jSQL.sort.compare(a.name, b.name, jSQL.DESC)\n\t);\n\n// result:\n' + JSON.stringify( people.select( ['name','age'] ).orderBy( (a, b) => jSQL.sort.compare(a.age, b.age, jSQL.ASC) || jSQL.sort.compare(a.name, b.name, jSQL.DESC) ), null, 4 )
+            'people\n\t.select( ["name", "age"] )\n\t.orderBy(\n\t\t(a, b) => jSQL.sort.compare(a.age, b.age, jSQL.sort.asc) || jSQL.sort.compare(a.name, b.name, jSQL.sort.desc)\n\t);\n\n// result:\n' + JSON.stringify( people.select( ['name','age'] ).orderBy( (a, b) => jSQL.sort.compare(a.age, b.age, jSQL.sort.asc) || jSQL.sort.compare(a.name, b.name, jSQL.sort.desc) ), null, 4 )
         );
 
         //first examples
@@ -150,42 +150,56 @@ new Vue({
             'people.push(\'{"name":"Kenny", "age":"56"}\');\n\npeople\n\t.parseJSON()\n\t.where( "age", ">", "30" )\n\t.select( ["name", "age"] )\n\t.sortBy( "name" );\n\n// result:\n' + JSON.stringify( people.concat('{"name":"Kenny", "age":"56"}').parseJSON().where( "age",">","30" ).select( ["name", "age"] ).sortBy( "name" ), null, 4 )
         );
 
+        //add items
+        this.fillCode(
+            '#appendExample',
+            'people\n\t.append({\n\t\t"name":"Kenny",\n\t\t"age":"56"\n\t})\n\t.select( "name", "age" );\n\n// result:\n' + JSON.stringify( people.append({"name":"Kenny", "age":"56"}).select( "name", "age" ), null, 4 )
+        );
+        this.fillCode(
+            '#appendAtExample',
+            'people\n\t.appendAt(2, {\n\t\t"name":"Kenny",\n\t\t"age":"56"\n\t})\n\t.select( "name", "age" );\n\n// result:\n' + JSON.stringify( people.appendAt(2, {"name":"Kenny", "age":"56"}).select( "name", "age" ), null, 4 )
+        );
+        this.fillCode(
+            '#prependExample',
+            'people\n\t.prepend({\n\t\t"name":"Kenny",\n\t\t"age":"56"\n\t})\n\t.select( "name", "age" );\n\n// result:\n' + JSON.stringify( people.prepend({"name":"Kenny", "age":"56"}).select( "name", "age" ), null, 4 )
+        );
+
 
         // ascending/descending
         this.fillCode(
             '#ascExample',
-            'jSQL.ASC;\n\n// result: ' + jSQL.ASC
+            'jSQL.sort.asc;\n\n// result: ' + jSQL.sort.asc
         );
         this.fillCode(
             '#descExample',
-            'jSQL.DESC;\n\n// result: ' + jSQL.DESC
+            'jSQL.sort.desc;\n\n// result: ' + jSQL.sort.desc
         );
 
         // compare
         this.fillCode(
             '#compareExample',
-            'jSQL.sort.compare("abc", "xyz", jSQL.ASC);\n// result: ' + jSQL.sort.compare("abc","xyz",jSQL.ASC) +
-            '\n\njSQL.sort.compare("abc", "xyz", jSQL.DESC);\n// result: ' + jSQL.sort.compare("abc","xyz",jSQL.DESC) +
-            '\n\njSQL.sort.compare(123, 456, jSQL.ASC);\n// result: ' + jSQL.sort.compare(123,456,jSQL.ASC) +
-            '\n\njSQL.sort.compare(123, 456, jSQL.DESC);\n// result: ' + jSQL.sort.compare(123,456,jSQL.DESC)
+            'jSQL.sort.compare("abc", "xyz", jSQL.sort.asc);\n// result: ' + jSQL.sort.compare("abc","xyz",jSQL.sort.asc) +
+            '\n\njSQL.sort.compare("abc", "xyz", jSQL.sort.desc);\n// result: ' + jSQL.sort.compare("abc","xyz",jSQL.sort.desc) +
+            '\n\njSQL.sort.compare(123, 456, jSQL.sort.asc);\n// result: ' + jSQL.sort.compare(123,456,jSQL.sort.asc) +
+            '\n\njSQL.sort.compare(123, 456, jSQL.sort.desc);\n// result: ' + jSQL.sort.compare(123,456,jSQL.sort.desc)
         );
         this.fillCode(
             '#compareStringExample',
-            'jSQL.sort.compareString("abc", "xyz", jSQL.ASC);\n// result: ' + jSQL.sort.compareString("abc","xyz",jSQL.ASC) +
-            '\n\njSQL.sort.compareString("abc", "xyz", jSQL.DESC);\n// result: ' + jSQL.sort.compare("abc","xyz",jSQL.DESC) +
+            'jSQL.sort.compareString("abc", "xyz", jSQL.sort.asc);\n// result: ' + jSQL.sort.compareString("abc","xyz",jSQL.sort.asc) +
+            '\n\njSQL.sort.compareString("abc", "xyz", jSQL.sort.desc);\n// result: ' + jSQL.sort.compare("abc","xyz",jSQL.sort.desc) +
             '\n\njSQL.sort.compareString("abc", "abc");\n// result: ' + jSQL.sort.compare("abc","abc")
         );
         this.fillCode(
             '#compareNumberExample',
-            'jSQL.sort.compareNumber(123, 456, jSQL.ASC);\n// result: ' + jSQL.sort.compareNumber(123,456,jSQL.ASC) +
-            '\n\njSQL.sort.compareNumber(123, 456, jSQL.DESC);\n// result: ' + jSQL.sort.compareNumber(123,456,jSQL.DESC) +
+            'jSQL.sort.compareNumber(123, 456, jSQL.sort.asc);\n// result: ' + jSQL.sort.compareNumber(123,456,jSQL.sort.asc) +
+            '\n\njSQL.sort.compareNumber(123, 456, jSQL.sort.desc);\n// result: ' + jSQL.sort.compareNumber(123,456,jSQL.sort.desc) +
             '\n\njSQL.sort.compareNumber(123, 123);\n// result: ' + jSQL.sort.compareNumber(123,123)
         );
         this.fillCode(
             '#compareDateExample',
-            'jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.ASC);\n// result: ' + jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.ASC) +
-            '\n\njSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.DESC);\n// result: ' + jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.DESC) +
-            '\n\njSQL.sort.compareDate(jSQL.date.now(), jSQL.date.now(), jSQL.ASC);\n// result: ' + jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.now(), jSQL.ASC)
+            'jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.sort.asc);\n// result: ' + jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.sort.asc) +
+            '\n\njSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.sort.desc);\n// result: ' + jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.format("4-29-1992"), jSQL.sort.desc) +
+            '\n\njSQL.sort.compareDate(jSQL.date.now(), jSQL.date.now(), jSQL.sort.asc);\n// result: ' + jSQL.sort.compareDate(jSQL.date.now(), jSQL.date.now(), jSQL.sort.asc)
         );
 
         //version
@@ -207,7 +221,7 @@ new Vue({
 
         this.fillCode(
             '#dateCountdownExample',
-            'jSQL.date.countdown(jSQL.date.now(), "5/25/1984 00:00:00");\n\n// result:\n' + JSON.stringify(jSQL.date.countdown(jSQL.date.now(), '5/25/1984 00:00:00'), null, 4)
+            'jSQL.date.countdown(jSQL.date.now(), "5/25/1984 20:20:00");\n\n// result:\n' + JSON.stringify(jSQL.date.countdown(jSQL.date.now(), '5/25/1984 20:20:00'), null, 4)
         );
 
         this.fillCode(

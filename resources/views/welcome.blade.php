@@ -64,7 +64,8 @@
             <section id="installation" class="pt-32">
                 <h3>Installation</h3>
                 <p class="mb-6">
-                    Can you spare < 3kb to import this into your project? Setting up the library is super
+                    Can you spare {{ round(filesize('../resources/js/util/jsql.js') / 1024,2) }}kb
+                    to import this into your project? Setting up the library is super
                     easy, just include the script on your page or import script and start using it!
                 </p>
                 <pre class="rounded-lg shadow-xl language-html"><code><!--<script type="text/javascript" src="./path/to/jsql.min.js"></script>--></code></pre>
@@ -91,6 +92,48 @@
                     know what those functions do. One thing to remember is that jSQL really shines when you chain
                     your methods.
                 </p>
+
+
+                <hr class="my-10">
+                <h4>append(<em class="text-green-600">json</em>)</h4>
+                <p class="mb-3">
+                    This temporarily appends an item at the end of the JSON array.
+                </p>
+                <div class="md:flex">
+                    <p class="mb-5 text-sm params">
+                        Returns:
+                        <code>Array</code>
+                    </p>
+                </div>
+                <pre id="appendExample" class="rounded-lg shadow-xl language-js"><code><!----></code></pre>
+
+
+                <hr class="my-10">
+                <h4>appendAt(<em class="text-green-600">index, json</em>)</h4>
+                <p class="mb-3">
+                    This temporarily appends an item to the JSON array by a given index.
+                </p>
+                <div class="md:flex">
+                    <p class="mb-5 text-sm params">
+                        Returns:
+                        <code>Array</code>
+                    </p>
+                </div>
+                <pre id="appendAtExample" class="rounded-lg shadow-xl language-js"><code><!----></code></pre>
+
+
+                <hr class="my-10">
+                <h4>prepend(<em class="text-green-600">json</em>)</h4>
+                <p class="mb-3">
+                    This temporarily appends an item at the beginning of the JSON array.
+                </p>
+                <div class="md:flex">
+                    <p class="mb-5 text-sm params">
+                        Returns:
+                        <code>Array</code>
+                    </p>
+                </div>
+                <pre id="prependExample" class="rounded-lg shadow-xl language-js"><code><!----></code></pre>
 
 
                 <hr class="my-10">
@@ -365,7 +408,7 @@
 
 
                 <hr class="my-10">
-                <h4>orderBy(<em class="text-green-600">key, sortDirection = jSQL.ASC</em>) <span class="text-sm italic">Aliases: sortBy</span></h4>
+                <h4>orderBy(<em class="text-green-600">key, sortDirection = jSQL.sort.asc</em>) <span class="text-sm italic">Aliases: sortBy</span></h4>
                 <p class="mb-3">
                     This will order the array by the JSON key provided. Use a function to sort on multiple keys. The function below will sort by age, then by name.
                 </p>
@@ -501,7 +544,7 @@
 
 
                 <hr class="my-10">
-                <h4>jSQL.ASC</h4>
+                <h4>jSQL.sort.asc</h4>
                 <p class="mb-3">
                     This represents a string to used for sorting in an ascending order.
                 </p>
@@ -515,7 +558,7 @@
 
 
                 <hr class="my-10">
-                <h4>jSQL.DESC</h4>
+                <h4>jSQL.sort.desc</h4>
                 <p class="mb-3">
                     This represents a string to used for sorting in descending order.
                 </p>
@@ -528,7 +571,7 @@
                 <pre id="descExample" class="rounded-lg shadow-xl language-js"><code><!----></code></pre>
 
                 <hr class="my-10">
-                <h4>jSQL.sort.compare(<em class="text-green-600">comparison1, comparison2, sortOrder = jSQL.ASC</em>)</h4>
+                <h4>jSQL.sort.compare(<em class="text-green-600">comparison1, comparison2, sortOrder = jSQL.sort.asc</em>)</h4>
                 <p class="mb-3">The comparison method will compare 2 strings or 2 numbers for sorting. Both comparisons need to be of the same type, a String or a Number.</p>
                 <div class="md:flex">
                     <p class="mb-5 text-sm params mr-6">
@@ -546,7 +589,7 @@
 
 
                 <hr class="my-10">
-                <h4>jSQL.sort.compareString(<em class="text-green-600">string1, string2, sortOrder = jSQL.ASC</em>)</h4>
+                <h4>jSQL.sort.compareString(<em class="text-green-600">string1, string2, sortOrder = jSQL.sort.asc</em>)</h4>
                 <p class="mb-3">The comparison method will compare 2 strings.</p>
                 <div class="md:flex">
                     <p class="mb-5 text-sm params mr-6">
@@ -564,7 +607,7 @@
 
 
                 <hr class="my-10">
-                <h4>jSQL.sort.compareNumber(<em class="text-green-600">number1, number2, sortOrder = jSQL.ASC</em>)</h4>
+                <h4>jSQL.sort.compareNumber(<em class="text-green-600">number1, number2, sortOrder = jSQL.sort.asc</em>)</h4>
                 <p class="mb-3">The comparison method will compare 2 numbers for sorting.</p>
                 <div class="md:flex">
                     <p class="mb-5 text-sm params mr-6">
@@ -582,7 +625,7 @@
 
 
                 <hr class="my-10">
-                <h4>jSQL.sort.compareDate(<em class="text-green-600">date1, date2, sortOrder = jSQL.ASC</em>)</h4>
+                <h4>jSQL.sort.compareDate(<em class="text-green-600">date1, date2, sortOrder = jSQL.sort.asc</em>)</h4>
                 <p class="mb-3">The comparison method will compare 2 date strings.</p>
                 <div class="md:flex">
                     <p class="mb-5 text-sm params mr-6">
