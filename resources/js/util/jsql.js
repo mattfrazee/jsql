@@ -40,82 +40,6 @@ export const jSQL = {
                 ('00' + d.getSeconds()).slice(-2);
             // return new Date(date).toISOString().slice(0, 19).replace('T', ' ');
         },
-        distanceBetween(startDate, endDate){
-            const millisecondsPerMinute = 1000 * 60,
-                millisecondsPerHour = 1000 * 60 * 60,
-                millisecondsPerDay = 1000 * 60 * 60 * 24,
-                millisecondsPerWeek = 1000 * 60 * 60 * 24 * 7,
-                millisecondsPerMonth = (1000 * 60 * 60 * 24 * 365) / 12,
-                millisecondsPerYear = 1000 * 60 * 60 * 24 * 365,
-                a = new Date(startDate),
-                b = new Date(endDate),
-                utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate(),
-                    a.getHours(), a.getMinutes()),
-                utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate(),
-                    b.getHours(), b.getMinutes()),
-                difference = (utc2 - utc1),
-                res = {};
-            let timeleft = difference;
-            // console.log(timeleft);
-            res.years = Math.floor(difference / millisecondsPerYear);
-            res.months = Math.floor(difference / millisecondsPerMonth);
-            res.weeks = Math.floor(difference / millisecondsPerWeek);
-            res.days = Math.floor(difference / millisecondsPerDay);
-            res.hours = Math.floor( difference / millisecondsPerHour);
-            res.minutes = Math.floor( difference / millisecondsPerMinute);
-            // timeleft -= res.years * millisecondsPerYear;
-            // console.log(timeleft);
-            // timeleft -= (timeleft - millisecondsPerMonth >= 0) ? Math.floor(timeleft / millisecondsPerMonth) * millisecondsPerMonth : 0;
-            // console.log(timeleft);
-            // timeleft -= (timeleft - millisecondsPerWeek >= 0) ? Math.floor(timeleft / millisecondsPerWeek) * millisecondsPerWeek : 0;
-            // console.log(timeleft);
-            // timeleft -= (timeleft - millisecondsPerDay >= 0) ? Math.floor(timeleft / millisecondsPerDay) * millisecondsPerDay : 0;
-            // console.log(timeleft);
-            // timeleft -= (timeleft - millisecondsPerHour >= 0) ? Math.floor(timeleft / millisecondsPerHour) * millisecondsPerHour : 0;
-            // console.log(timeleft);
-            // timeleft -= (timeleft - millisecondsPerMinute > 0) ? Math.floor(timeleft / millisecondsPerMinute) * millisecondsPerMinute : 0;
-            // console.log('millisecondsPerMinute',timeleft);
-            return res;
-            // return jSQL.date.countdown(endDate, startDate);
-        },
-        countdown(futureDate, startDate){
-            if((!futureDate || !jSQL.isDate(futureDate)) || (startDate && !jSQL.isDate(startDate))){
-                // throw RangeError('The date is not a valid format');
-                return;
-            }
-            let date = new Date(futureDate).getTime() - (startDate ? new Date(startDate) : new Date()).getTime();
-            let years = 0, months = 0, days = 0, hours = 0, minutes = 0, seconds = 0;
-            if(date >= 0) {
-                let time = {
-                    year: 1000 * 60 * 60 * 24 * 365,
-                    month: 1000 * 60 * 60 * 24 * 365 / 12,
-                    day: 1000 * 60 * 60 * 24,
-                    hour: 1000 * 60 * 60,
-                    minute: 1000 * 60,
-                    second: 1000,
-                };
-                years = Math.floor(date / time.year);
-                date -= (years * time.year);
-                months = Math.floor(date / time.month);
-                date -= (months * time.month);
-                days = Math.floor(date / time.day);
-                date -= (days * time.day);
-                hours = Math.floor(date / time.hour);
-                date -= (hours * time.hour);
-                minutes = Math.floor(date / time.minute);
-                date -= (minutes * time.minute);
-                seconds = Math.floor(date / time.second);
-                date -= (seconds * time.second);
-            }
-            return {
-                years: years,
-                months: months,
-                days: days,
-                hours: hours,
-                minutes: minutes,
-                seconds: seconds
-            }
-        },
     },
     getPropertyValue(key, item) {
         if(!!key && !!item) {
@@ -270,7 +194,7 @@ Array.prototype.like = Array.prototype.searchFor = function (searchTerm = '', ca
         return !!found.length;
     }
 
-    this.forEach((item, id) => {
+    this.forEach(item => {
         if (searchObject(item, searchTerm, caseSensitive)) {
             result.push(item);
         }
@@ -320,6 +244,9 @@ Array.prototype.min = function (key) {
         return;
     }
     return this.orderBy(key).first();
+}
+Array.prototype.occurrences = function (key, value){
+    return this.where(key, '=', value).length;
 }
 Array.prototype.orderBy = Array.prototype.sortBy = function (key, sortDirection = jSQL.sort.asc) {
     return typeof (key) === 'function' ? this.sort(key) : this.sort((a, b) => {

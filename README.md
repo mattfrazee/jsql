@@ -122,30 +122,16 @@ These are simple functions that can help you out while coding in jSQL.
 
 ---
 
-### jSQL.date.countdown(futureDate, startDate)
+### jSQL.date.format(date)
 
-Parameters: (`String`, `String`) Returns: `Object`
+Parameters: `String` | `Number` Returns: `String`
 
-Outputs the current version of jSQL.
-
-**Example:**
-
-```javascript
-jSQL.date.countdown(jSQL.date.now(), '5/25/1984 00:00:00');
-```
-
----
-
-### jSQL.date.distanceBetween( startDate, endDate )
-
-Parameters: (`String`, `String`) Returns: `Object`
-
-Outputs the time difference between two dates in a JSON format.
+Outputs the parsed date in a SQL format: `YYYY-MM-DD HH:MM:SS`
 
 **Example:**
 
 ```javascript
-jSQL.date.distanceBetween('5/25/1984 00:00:00', jSQL.date.now());
+jSQL.date.format('5/25/1984');
 ```
 
 ---
