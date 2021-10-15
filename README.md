@@ -24,7 +24,7 @@ through 1000 records before any limiting or filtering happens.
 
 ## Installation
 
-Can you spare < 15kb to import this into your project? Setting up the library is super easy, just include the script on
+Can you spare < 8kb to import this into your project? Setting up the library is super easy, just include the script on
 your page or import script and start using it!
 
 ```html
@@ -396,6 +396,20 @@ Parameters: `String` Returns: `Number`
 
 ```javascript
 people.min('age');
+```
+
+---
+
+### occurrences( key, value )
+
+Parameters: (`String`, `String` | `Number`) Returns: `Array`
+
+Returns the number of occurrences of a value in a JSON array.
+
+**Example:**
+
+```javascript
+people.occurrences('address.country.name', 'US');
 ```
 
 ---
