@@ -1,3 +1,8 @@
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.css';
+import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup';
+
 import { heroSample } from "./sample-data";
 
 new Vue({
@@ -217,11 +222,6 @@ new Vue({
         this.fillCode(
             '#dateGetExample',
             'jSQL.date.format("5/25/1984");\n\n// result: ' + jSQL.date.format("5/25/1984")
-        );
-
-        this.fillCode(
-            '#dateCountdownExample',
-            'jSQL.date.countdown(jSQL.date.now(), "5/25/1984 20:20:00");\n\n// result:\n' + JSON.stringify(jSQL.date.countdown(jSQL.date.now(), '5/25/1984 20:20:00'), null, 4)
         );
 
         this.fillCode(

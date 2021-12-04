@@ -17,10 +17,11 @@
         "lodash": "^4.17.19",
         "postcss": "^8.2.13",
         "tailwindcss": "^2.1.2",
-        "vue-loader": "^15.9.6",
+        "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "prismjs": "^1.25.0",
         "vue": "^2.6.12"
     }
 }

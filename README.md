@@ -167,7 +167,7 @@ _An alias of `where`._
 
 Parameters: `Object` Returns: `Array`
 
-Temporarily appends an item at the end of the JSON array.
+Temporarily appends an item to the JSON array.
 
 **Example:**
 
@@ -181,7 +181,7 @@ people.append({'name': 'Matthew'});
 
 Parameters: (`Number`, `Object`) Returns: `Array`
 
-Temporarily appends an item at the end of the JSON array.
+Temporarily appends an item to a specified index in the JSON array.
 
 **Example:**
 
@@ -352,9 +352,7 @@ Returns a specified amount of array items from a given index.
 **Example:**
 
 ```javascript
-people
-    .select('name')
-    .limit(2);
+people.select('name').limit(2);
 ```
 
 ---
@@ -402,7 +400,7 @@ people.min('age');
 
 ### occurrences( key, value )
 
-Parameters: (`String`, `String` | `Number`) Returns: `Array`
+Parameters: (`String`, `String` | `Number`) Returns: `Number`
 
 Returns the number of occurrences of a value in a JSON array.
 

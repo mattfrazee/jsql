@@ -46,7 +46,7 @@ export const jSQL = {
             let keys = key.split('.');
             let newObj = item;
             for (let i = 0; i < keys.length; i++) {
-                if (newObj.hasOwnProperty(keys[i])) {
+                if (newObj?.[keys[i]] !== undefined) {
                     newObj = newObj[keys[i]];
                     if (i === keys.length - 1) {
                         return newObj;
@@ -98,14 +98,49 @@ Array.prototype.avg = Array.prototype.average = Array.prototype.mean = function 
         return this.sum(key) / this.thatHave(key).length;
     }
 }
-Array.prototype.duplicates = function(){
+Array.prototype.createMultipleRelationships = function (keyArray, relationalArray, relationalKey, relationshipKey = relationalKey) {
+    this.forEach(item => {
+        let keys = jSQL.getPropertyValue(keyArray, item);
+        if(!!keys && Array.isArray(keys)) {
+            keys.forEach(key => {
+                let relations = relationalArray.where(relationalKey, '=', key).first();
+                let relationshipValue = jSQL.getPropertyValue(relationshipKey, item);
+                jSQL.updateProperty(item, relationshipKey, [...(Array.isArray(relationshipValue) ? relationshipValue : []), relations]);
+            });
+        }
+    });
+    return this;
+}
+Array.prototype.createRelationship = function (key, relationalArray, relationalKey, relationshipKey = relationalKey) {
+    this.forEach((item, id) => {
+        let itemValue = jSQL.getPropertyValue(key, item);
+        if(itemValue !== undefined) {
+            let relations = relationalArray.whereManyOrFirst(relationalKey, '=', itemValue);
+            if(jSQL.getPropertyValue(relationshipKey) === undefined) {
+                this[id] = JSON.merge({}, item, jSQL.createProperty(relationshipKey, relations));
+            } else {
+                jSQL.updateProperty(item, relationshipKey, relations);
+            }
+        }
+    });
+    return this;
+}
+Array.prototype.duplicates = function (){
     let orig = [];
     let copy = [];
     this.forEach(item => {
-        if(!orig.includes(item)){
-            orig.push(item);
-        } else if(!copy.includes(item)) {
-            copy.push(item);
+        if(typeof item === 'object' && !Array.isArray(item)) {
+            if(!orig.includesJSON(item)){
+                orig.push(item);
+            } else if(!copy.includesJSON(item)) {
+                copy.push(item);
+            }
+        } else {
+            if(!orig.includes(item)) {
+                orig.push(item);
+            } else if(!copy.includes(item)) {
+                copy.push(item);
+            }
         }
     });
     return copy;
@@ -136,6 +171,15 @@ Array.prototype.has = Array.prototype.thatHas = function (key) {
     else {
         return !!this.thatHave(key).length;
     }
+}
+Array.prototype.includesJSON = function (json) {
+    let included = false;
+    this.forEach(item => {
+        if(JSON.isEqual(item, json)){
+            included = true;
+        }
+    });
+    return included;
 }
 Array.prototype.insertAfter = Array.prototype.insert = function(json){
     this.push(Object.assign({}, json));
@@ -280,13 +324,19 @@ Array.prototype.parseJSON = function () {
 Array.prototype.prepend = function(json){
     return [json].concat(this);
 }
-Array.prototype.removeDuplicates = function(){
+Array.prototype.removeDuplicates = function (){
     let res=[];
     this.forEach(item => {
-        if(!res.includes(item)){
-            res.push(item);
+        if(typeof item === 'object' && !Array.isArray(item)){
+            if(!res.includesJSON(item)){
+                res.push(item);
+            }
+        } else {
+            if(!res.includes(item)){
+                res.push(item);
+            }
         }
-    })
+    });
     return res;
 }
 Array.prototype.select = Array.prototype.pluck = function (key) {
@@ -322,7 +372,7 @@ Array.prototype.sum = Array.prototype.total = function (key) {
     return sum;
 }
 Array.prototype.thatHave = function (key = '') {
-    return this.where(item => !!jSQL.getPropertyValue(key, item));
+    return this.where(item => jSQL.getPropertyValue(key, item) !== undefined);
     // return this.where(obj => obj.hasOwnProperty(key));
 }
 Array.prototype.transform = function (callback) {
@@ -373,7 +423,22 @@ Array.prototype.where = Array.prototype.andWhere = function () {
     //     ? this
     //     : this.filter(item => comparison(item));
 }
-
+Array.prototype.whereFalse = function (key) {
+    return this.where(key, '=', false);
+}
+Array.prototype.whereManyOrFirst = function () {
+    let res = this.where(...arguments);
+    return res.length === 1 ? res.first() : res;
+}
+Array.prototype.whereNotNull = function (key) {
+    return this.where(key, '!=', null);
+}
+Array.prototype.whereNull = function (key) {
+    return this.where(key, '=', null);
+}
+Array.prototype.whereTrue = function (key) {
+    return this.where(key, '=', true);
+}
 
 JSON.merge = function(target, ...sources){
     if (!sources.length) {

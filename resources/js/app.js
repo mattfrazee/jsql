@@ -9,6 +9,8 @@ window.jSQL = jSQL;
 // import sample data
 import { people } from "./sample-data";
 window.people = people;
+import { states } from "./sample-data";
+window.states = states;
 
 
 // sticky navigation
