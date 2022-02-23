@@ -145,6 +145,10 @@ Array.prototype.duplicates = function (){
     });
     return copy;
 }
+Array.prototype.each = function (callback) {
+    this.forEach(callback);
+    return this;
+}
 Array.prototype.extract = function (key, callback) {
     return this.thatHave(key).map(
         item => typeof callback === 'function'

@@ -122,6 +122,34 @@ These are simple functions that can help you out while coding in jSQL.
 
 ---
 
+### jSQL.createProperty( objectString )
+
+Parameters: `String` | `Number` Returns: `String`
+
+Creates nested objects from a string.
+
+**Example:**
+
+```javascript
+jSQL.createProperty('employment.profression.title', 'Web Developer');
+```
+
+---
+
+### jSQL.getProperty( propertyName, object )
+
+Parameters: `String` Returns: `Mixed`
+
+Returns the value of an object from a string.
+
+**Example:**
+
+```javascript
+jSQL.getProperty('employment.profression.title', 'Web Developer');
+```
+
+---
+
 ### jSQL.date.format(date)
 
 Parameters: `String` | `Number` Returns: `String`
@@ -208,6 +236,22 @@ people.average('age');
 ### avg( key )
 
 _An alias of `average`._
+
+---
+
+### each( callback )
+
+Parameters: (`Function`) Returns: `Array`
+
+This provides the same function as forEach, except, it returns the chained array after the traversal is complete.
+
+**Example:**
+
+```javascript
+people.each(item => {
+    console.log(item);
+});
+```
 
 ---
 
