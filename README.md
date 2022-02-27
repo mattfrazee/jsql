@@ -36,7 +36,7 @@ your page or import script and start using it!
 For the examples to work, we need some data to work with. This data sample contains various types of dummy data that is
 used to show typical JSON datasets.
 
-```json
+```javascript
 const people = [
     {
         "name": "John",
