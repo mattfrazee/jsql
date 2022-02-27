@@ -32,6 +32,7 @@ new Vue({
         // console.log(Prism);
         // console.log(people);
 
+        // sample data
         this.fillCode(
             '#sampleJsonData',
             'const people = ' + JSON.stringify(people, null, 4) + ';'
